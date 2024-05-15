@@ -5,17 +5,17 @@
 package accesodatos;
 
 import java.sql.*;
-
+import java.sql.DriverManager;
 /**
  *
  * @author pablo
  */
 public class Conexion {
-    private static final String URL = "jdbc:mariadb//localhost/";
+    private static final String URL = "jdbc:mariadb://localhost/";
     private static final String DB = "proyecto_transversal1";
     private static final String USUARIO = "root";
     private static final String PASSWORD = "";
-    private static Connection connection;
+    private static Connection connection = null;
 
     public Conexion() {
         
@@ -25,7 +25,7 @@ public class Conexion {
         if(connection == null){
             try{
                 Class.forName("org.mariadb.jdbc.Driver");
-                connection = DriverManager.getConnection(URL, USUARIO, PASSWORD);
+                connection = DriverManager.getConnection(URL+DB, USUARIO, PASSWORD);
                 
             }catch(ClassNotFoundException e){
                 System.out.println("No se ha encontrado el driver");

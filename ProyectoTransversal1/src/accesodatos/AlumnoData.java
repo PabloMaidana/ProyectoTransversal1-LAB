@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author pablo
@@ -20,7 +21,7 @@ public class AlumnoData {
     }
     
     public void guardarAlumno(Alumno alumno){
-        String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaNac,estado) "
+        String sql = "INSERT INTO alumno(dni,apellido,nombre,fechaNac,estado) "
                 + "VALUES (?,?,?,?,?)";
         
         try {
@@ -29,12 +30,32 @@ public class AlumnoData {
             ps.setString(2,alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFecha()));
+            ps.setBoolean(5, true);
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()) {
+                alumno.setIdAlumno(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Alumno guardado");
+            }
+            ps.close();
             
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de alumnos");
+        }
+    }
+    
+    public void actualizarAlumno(Alumno alumno){
+        try {
+            String sql = "UPDATE `alumno` SET `idAlumno`='?',`dni`='?',`apellido`='?',`nombre`='?',`fechaNac`='?',`estado`='?' "
+                    + "WHERE idAlumno = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, alumno.getIdAlumno());
+            ps.setInt(2,alumno.getDni());
             
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }    
     }
     
    
