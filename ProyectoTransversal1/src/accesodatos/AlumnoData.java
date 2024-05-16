@@ -5,7 +5,6 @@
 package accesodatos;
 import entidades.Alumno;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -46,16 +45,36 @@ public class AlumnoData {
     
     public void actualizarAlumno(Alumno alumno){
         try {
-            String sql = "UPDATE `alumno` SET `idAlumno`='?',`dni`='?',`apellido`='?',`nombre`='?',`fechaNac`='?',`estado`='?' "
+            String sql = "UPDATE alumno SET dni= ?,apellido= ?,nombre= ?,fechaNac= ? "
                     + "WHERE idAlumno = ?";
             
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, alumno.getIdAlumno());
-            ps.setInt(2,alumno.getDni());
             
+            ps.setInt(1,alumno.getDni());
+            ps.setString(2,alumno.getApellido());
+            ps.setString(3,alumno.getNombre());
+            ps.setDate(4, Date.valueOf(alumno.getFecha()));
+            System.out.println(alumno.getIdAlumno());
+            
+            ps.setInt(5, alumno.getIdAlumno());
+            
+            int fila = ps.executeUpdate();
+            
+            if (fila ==1) {
+                JOptionPane.showMessageDialog(null, "Alumno modificado");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
-        }    
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de alumnos");
+        }  
+    }
+    
+    public Alumno buscarAlumno(int id){
+        try{
+            String sql = "SELECT `dni`, `apellido`, `nombre`, `fechaNac` FROM `alumno` WHERE idAlumno = ?";
+            
+        }catch(SQLException ex){
+            
+        }
     }
     
    

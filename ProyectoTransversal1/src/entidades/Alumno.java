@@ -18,6 +18,14 @@ public class Alumno {
     private LocalDate fecha;
     private boolean estado;
 
+    public Alumno(int dni, String apellido, String nombre, LocalDate fecha, boolean estado) {
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.estado = estado;
+    }
+
     public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fecha, boolean estado) {
         this.idAlumno = idAlumno;
         this.dni = dni;
@@ -26,6 +34,8 @@ public class Alumno {
         this.fecha = fecha;
         this.estado = estado;
     }
+    
+    
 
     public int getIdAlumno() {
         return idAlumno;
@@ -74,9 +84,6 @@ public class Alumno {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
-
-    
     
     
 }
