@@ -143,7 +143,7 @@ public class AlumnoData {
         List<Alumno> alumnos = new ArrayList<>();
         
         try{
-            String sql = "SELECT * FROM `alumno` WHERE = 1 ";
+            String sql = "SELECT * FROM `alumno` WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -152,7 +152,7 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
-                alumno.setFecha((rs.getDate("fechaNacimiento").toLocalDate()));
+                alumno.setFecha((rs.getDate("fechaNac").toLocalDate()));
                 alumno.setEstado(rs.getBoolean("estado"));
                 alumnos.add(alumno);
             }

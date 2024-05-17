@@ -7,6 +7,7 @@ package proyectotransversal1;
 import accesodatos.AlumnoData;
 import entidades.Alumno;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -21,8 +22,8 @@ public class ProyectoTransversal1 {
         AlumnoData controlAlumno = new AlumnoData();
         Alumno alumno1 = new Alumno(1,123,"Callegaro","Marti",LocalDate.of(2002,03,29),true);
         Alumno alumno2 = new Alumno(2,124,"Maidana","Pablo",LocalDate.of(2002,03,19),true);
-      controlAlumno.guardarAlumno(alumno1);
-      controlAlumno.guardarAlumno(alumno2);
+//      controlAlumno.guardarAlumno(alumno1);
+//      controlAlumno.guardarAlumno(alumno2);
 //      controlAlumno.actualizarAlumno(alumno1);
 //        controlAlumno.eliminarAlumno(2);
 //        if (controlAlumno.buscarAlumno(2)!=null) {
@@ -32,7 +33,10 @@ public class ProyectoTransversal1 {
 //        
 //        System.out.println(controlAlumno.buscarAlumnoPorDni(123).toString());
         
-        controlAlumno.listarAlumnos();
+        List<Alumno> alumnos = controlAlumno.listarAlumnos();
+        for (Alumno a:alumnos) {
+            System.out.println(a.toString());
+        }
     }
     
 }
