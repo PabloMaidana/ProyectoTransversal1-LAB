@@ -4,7 +4,6 @@
  */
 package entidades;
 
-import java.time.LocalDate;
 
 /**
  *
@@ -13,20 +12,20 @@ import java.time.LocalDate;
 public class Materia {
     private int idMateria;
     private String nombre;
-    private LocalDate anio;
+    private int anio;
     private boolean estado;
 
     public Materia() {
     }
 
-    public Materia(int idMateria, String nombre, LocalDate anio, boolean estado) {
+    public Materia(int idMateria, String nombre, int anio, boolean estado) {
         this.idMateria = idMateria;
         this.nombre = nombre;
         this.anio = anio;
         this.estado = estado;
     }
 
-    public Materia(String nombre, LocalDate anio, boolean estado) {
+    public Materia(String nombre, int anio, boolean estado) {
         this.nombre = nombre;
         this.anio = anio;
         this.estado = estado;
@@ -48,11 +47,11 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public LocalDate getAnio() {
+    public int getAnio() {
         return anio;
     }
 
-    public void setAnio(LocalDate anio) {
+    public void setAnio(int anio) {
         this.anio = anio;
     }
 

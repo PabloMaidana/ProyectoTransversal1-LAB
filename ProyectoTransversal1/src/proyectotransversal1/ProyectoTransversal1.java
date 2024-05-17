@@ -5,7 +5,9 @@
 package proyectotransversal1;
 
 import accesodatos.AlumnoData;
+import accesodatos.MateriaData;
 import entidades.Alumno;
+import entidades.Materia;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,8 +22,8 @@ public class ProyectoTransversal1 {
      */
     public static void main(String[] args) {
         AlumnoData controlAlumno = new AlumnoData();
-        Alumno alumno1 = new Alumno(1,123,"Callegaro","Marti",LocalDate.of(2002,03,29),true);
-        Alumno alumno2 = new Alumno(2,124,"Maidana","Pablo",LocalDate.of(2002,03,19),true);
+//        Alumno alumno1 = new Alumno(1,123,"Callegaro","Marti",LocalDate.of(2002,03,29),true);
+//        Alumno alumno2 = new Alumno(2,124,"Maidana","Pablo",LocalDate.of(2002,03,19),true);
 //      controlAlumno.guardarAlumno(alumno1);
 //      controlAlumno.guardarAlumno(alumno2);
 //      controlAlumno.actualizarAlumno(alumno1);
@@ -33,10 +35,18 @@ public class ProyectoTransversal1 {
 //        
 //        System.out.println(controlAlumno.buscarAlumnoPorDni(123).toString());
         
-        List<Alumno> alumnos = controlAlumno.listarAlumnos();
-        for (Alumno a:alumnos) {
-            System.out.println(a.toString());
-        }
+//        List<Alumno> alumnos = controlAlumno.listarAlumnos();
+//        for (Alumno a:alumnos) {
+//            System.out.println(a.toString());
+//        }
+      
+        MateriaData materia = new MateriaData();
+        Materia mat1 = new Materia(1,"Matematica",2,true);
+        materia.guardarMateria(mat1);
+        
+        
+        
+        
     }
-    
+       
 }
