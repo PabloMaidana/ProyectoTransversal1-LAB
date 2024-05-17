@@ -4,10 +4,18 @@
  */
 package accesodatos;
 
+import java.sql.*;
+
 /**
  *
  * @author pablo
  */
 public class InscripcionData {
+    private Connection con = null;
+
+    public InscripcionData() {
+        con = Conexion.getConexion();
+    }
+    
     
 }
