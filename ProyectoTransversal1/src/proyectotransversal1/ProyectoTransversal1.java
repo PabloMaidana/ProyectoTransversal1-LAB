@@ -20,10 +20,10 @@ public class ProyectoTransversal1 {
     public static void main(String[] args) {
         AlumnoData controlAlumno = new AlumnoData();
         Alumno alumno1 = new Alumno(1,123,"Callegaro","Marti",LocalDate.of(2002,03,29),true);
-//        Alumno alumno2 = new Alumno(124,"Maidana","Pablo",LocalDate.of(2002,03,19),true);
-//        controlAlumno.guardarAlumno(alumno1);
-//        controlAlumno.guardarAlumno(alumno2);
-      controlAlumno.actualizarAlumno(alumno1);
+        Alumno alumno2 = new Alumno(2,124,"Maidana","Pablo",LocalDate.of(2002,03,19),true);
+//      controlAlumno.guardarAlumno(alumno1);
+//      controlAlumno.guardarAlumno(alumno2);
+        controlAlumno.actualizarAlumno(alumno1);
     }
     
 }
