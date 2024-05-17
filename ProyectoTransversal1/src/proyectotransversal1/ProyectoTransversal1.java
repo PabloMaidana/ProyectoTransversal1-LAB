@@ -25,10 +25,10 @@ public class ProyectoTransversal1 {
 //      controlAlumno.guardarAlumno(alumno1);
 //      controlAlumno.guardarAlumno(alumno2);
 //      controlAlumno.actualizarAlumno(alumno1);
-//        controlAlumno.eliminarAlumno(2);
-//        if (controlAlumno.buscarAlumno(2)!=null) {
+//      controlAlumno.eliminarAlumno(2);
+//      if (controlAlumno.buscarAlumno(2)!=null) {
 //            System.out.println(controlAlumno.buscarAlumno(2).toString());
-//        }
+//      }
 //        
 //        
 //        System.out.println(controlAlumno.buscarAlumnoPorDni(123).toString());
