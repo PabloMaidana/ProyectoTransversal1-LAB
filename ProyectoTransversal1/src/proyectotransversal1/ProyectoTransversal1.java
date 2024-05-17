@@ -23,7 +23,15 @@ public class ProyectoTransversal1 {
         Alumno alumno2 = new Alumno(2,124,"Maidana","Pablo",LocalDate.of(2002,03,19),true);
 //      controlAlumno.guardarAlumno(alumno1);
 //      controlAlumno.guardarAlumno(alumno2);
-        controlAlumno.actualizarAlumno(alumno1);
+//      controlAlumno.actualizarAlumno(alumno1);
+//        controlAlumno.eliminarAlumno(2);
+        if (controlAlumno.buscarAlumno(2)!=null) {
+            System.out.println(controlAlumno.buscarAlumno(2).toString());
+        }
+        
+        
+        System.out.println(controlAlumno.buscarAlumnoPorDni(123).toString());
+        
     }
     
 }
