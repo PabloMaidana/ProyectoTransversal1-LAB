@@ -7,6 +7,8 @@ import entidades.Alumno;
 import java.sql.*;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author pablo
@@ -135,6 +137,32 @@ public class AlumnoData {
         }catch(SQLException e){
             System.out.println("");
         }
+    }
+    
+      public List<Alumno> listarAlumnos(){
+        List<Alumno> alumnos = new ArrayList<>();
+        
+        try{
+            String sql = "SELECT * FROM `alumno` WHERE = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFecha((rs.getDate("fechaNacimiento").toLocalDate()));
+                alumno.setEstado(rs.getBoolean("estado"));
+                alumnos.add(alumno);
+            }
+            ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno "+ ex.getMessage());
+            
+        }
+        return alumnos;
+        
     }
    
 }
