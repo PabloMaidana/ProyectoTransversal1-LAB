@@ -17,7 +17,7 @@ public class Conexion {
     private static final String PASSWORD = "";
     private static Connection connection = null;
 
-    public Conexion() {
+    private Conexion() {
         
     }
     

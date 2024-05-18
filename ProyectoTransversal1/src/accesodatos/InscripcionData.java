@@ -4,7 +4,10 @@
  */
 package accesodatos;
 
+import entidades.Inscripcion;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,5 +20,19 @@ public class InscripcionData {
         con = Conexion.getConexion();
     }
     
+    public void guardarInscripcion(Inscripcion insc){
+        String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria) "
+                + "VALUES (?,?,?)";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, insc.getNota());
+            ps.setInt(2, insc.getAlumno().getIdAlumno());
+            ps.setInt(3, insc.getMateria().getIdMateria());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
