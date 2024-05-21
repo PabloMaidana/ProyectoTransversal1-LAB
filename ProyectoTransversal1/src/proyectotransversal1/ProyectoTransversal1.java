@@ -6,6 +6,7 @@ package proyectotransversal1;
 
 import accesodatos.AlumnoData;
 import accesodatos.InscripcionData;
+import accesodatos.MateriaData;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
@@ -40,9 +41,20 @@ public class ProyectoTransversal1 {
 //            System.out.println(a.toString());
 //        }
       
-//        MateriaData materia = new MateriaData();
+
+//      MateriaData materia = new MateriaData();
         Materia mat1 = new Materia(1,"Matematica",2,true);
-//        materia.guardarMateria(mat1);
+//      materia.guardarMateria(mat1);
+
+        MateriaData controlMateria = new MateriaData();
+//        Materia mat1 = new Materia(1,"Matematica",4,true);
+//        controlMateria.guardarMateria(mat1);
+//        controlMateria.actualizarMateria(mat1);
+
+//         if (controlMateria.buscarMateria(1)!= null) {
+//            System.out.println(controlMateria.buscarMateria(1).toString());
+//        }
+
         
         InscripcionData controlInscripcion = new InscripcionData();
         Inscripcion insc1 = new Inscripcion(alumno2,mat1,7.5);
