@@ -40,11 +40,14 @@ public class ProyectoTransversal1 {
 //            System.out.println(a.toString());
 //        }
       
-        MateriaData materia = new MateriaData();
-        Materia mat1 = new Materia(1,"Matematica",2,true);
-        materia.guardarMateria(mat1);
-        
-        
+        MateriaData controlMateria = new MateriaData();
+//        Materia mat1 = new Materia(1,"Matematica",4,true);
+//        controlMateria.guardarMateria(mat1);
+//        controlMateria.actualizarMateria(mat1);
+
+//         if (controlMateria.buscarMateria(1)!= null) {
+//            System.out.println(controlMateria.buscarMateria(1).toString());
+//        }
         
         
     }
