@@ -85,5 +85,46 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla materia");
         }  
     }
-     
+    
+    public void eliminarMateria(int id){
+        try{
+            String sql = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, id);
+            
+            int filas = ps.executeUpdate();
+            if (filas == 1) {
+                System.out.println("Se ha eliminado la materia");
+            }
+
+        }catch(SQLException e){
+            System.out.println("");
+        }
+    }
+    
+    public List<Materia> listarMaterias(){
+        List<Materia> materias = new ArrayList<>();
+        
+        try{
+            String sql = "SELECT * FROM materia WHERE estado = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+             while(rs.next()){
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnio(rs.getInt("año"));
+                materia.setEstado(rs.getBoolean("estado"));
+                materias.add(materia);
+            }
+            ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla materia "+ ex.getMessage());
+            
+        }
+        return materias;
+    }
+    
 }
