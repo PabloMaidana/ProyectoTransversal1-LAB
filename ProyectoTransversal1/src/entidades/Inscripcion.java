@@ -64,8 +64,12 @@ public class Inscripcion {
 
     @Override
     public String toString() {
-        String insc = idInscripcion+"," +alumno.getApellido()+","+alumno.getNombre()+","+materia.getNombre();
-        return insc;
+        try{
+            String insc = idInscripcion+"," +alumno.getApellido()+","+alumno.getNombre()+","+materia.getNombre() +","+ nota;
+            return insc;
+        }catch(NullPointerException e){
+            return "null";
+        }
     }
     
     
