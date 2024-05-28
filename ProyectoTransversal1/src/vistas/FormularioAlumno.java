@@ -4,17 +4,31 @@
  */
 package vistas;
 
+import accesodatos.AlumnoData;
+import entidades.Alumno;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author pablo
  */
 public class FormularioAlumno extends javax.swing.JInternalFrame {
-
+    AlumnoData alumData = new AlumnoData();
+    Alumno alumnoActual = null;
+    
     /**
      * Creates new form FormularioAlumno
      */
     public FormularioAlumno() {
         initComponents();
+        jlDniInvalido.setVisible(false);
+        jlNombreInvalido.setVisible(false);
+        jlApellidoInvalido.setVisible(false);
     }
 
     /**
@@ -26,21 +40,354 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jlDni = new javax.swing.JLabel();
+        jtDni = new javax.swing.JTextField();
+        jlNombre = new javax.swing.JLabel();
+        jtNombre = new javax.swing.JTextField();
+        jlApellido = new javax.swing.JLabel();
+        jtApellido = new javax.swing.JTextField();
+        jcbEstado = new javax.swing.JCheckBox();
+        jcFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        jlFechaNacimiento = new javax.swing.JLabel();
+        jbGuardar = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
+        jlDniInvalido = new javax.swing.JLabel();
+        jlNombreInvalido = new javax.swing.JLabel();
+        jlApellidoInvalido = new javax.swing.JLabel();
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel1.setText("Alumno");
+
+        jlDni.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jlDni.setText("DNI:");
+
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDniKeyReleased(evt);
+            }
+        });
+
+        jlNombre.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jlNombre.setText("Nombre:");
+
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreKeyReleased(evt);
+            }
+        });
+
+        jlApellido.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jlApellido.setText("Apellido:");
+
+        jtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtApellidoActionPerformed(evt);
+            }
+        });
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyReleased(evt);
+            }
+        });
+
+        jcbEstado.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jcbEstado.setText("Estado");
+        jcbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEstadoActionPerformed(evt);
+            }
+        });
+
+        jcFechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jcFechaNacimientoPropertyChange(evt);
+            }
+        });
+
+        jlFechaNacimiento.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jlFechaNacimiento.setText("Fecha Nacimiento:");
+
+        jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
+
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
+
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
+
+        jlDniInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jlDniInvalido.setText("Dni invalido");
+
+        jlNombreInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jlNombreInvalido.setText("Nombre invalido");
+
+        jlApellidoInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        jlApellidoInvalido.setText("Apellido invalido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jlDni)
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlNombre)
+                                    .addComponent(jlApellido))
+                                .addGap(57, 57, 57))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jlFechaNacimiento)
+                                .addGap(18, 18, 18)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlApellidoInvalido)
+                    .addComponent(jlNombreInvalido)
+                    .addComponent(jlDniInvalido)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbBuscar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jtNombre)
+                        .addComponent(jtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                    .addComponent(jcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbGuardar)
+                        .addGap(46, 46, 46)
+                        .addComponent(jbEliminar)
+                        .addGap(105, 105, 105))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbSalir)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(176, 176, 176))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jcbEstado)
+                        .addGap(180, 180, 180))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlDni)
+                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscar))
+                .addGap(5, 5, 5)
+                .addComponent(jlDniInvalido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlNombre)
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlNombreInvalido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlApellido))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jlFechaNacimiento))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlApellidoInvalido)
+                        .addGap(24, 24, 24)
+                        .addComponent(jcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jcbEstado)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGuardar)
+                    .addComponent(jbEliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEstadoActionPerformed
 
+    private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtApellidoActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        int dni;
+        
+        if (validarEntero(jtDni.getText())) {    
+            
+            dni = Integer.parseInt(jtDni.getText());
+            alumnoActual = alumData.buscarAlumnoPorDni(dni);
+            
+        if (alumnoActual != null) {
+            jtNombre.setText(alumnoActual.getNombre());
+            jtApellido.setText(alumnoActual.getApellido());
+            LocalDate ld = alumnoActual.getFecha();
+            Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            jcFechaNacimiento.setDate(date);
+            jcbEstado.setSelected(alumnoActual.isEstado());
+            jbEliminar.setEnabled(true);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Dni invalido");
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        int dni = 0;
+        String apellido = null,nombre = null;
+        boolean estado;
+        Date fecha;
+        
+        if (jtDni.getText().isEmpty() || jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jcFechaNacimiento.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Hay campos sin completar");
+        }else{
+            // Validacion DNI
+            if (validarEntero(jtDni.getText())) {
+                dni = Integer.parseInt(jtDni.getText());
+            }else{
+                jlDniInvalido.setVisible(true);
+            }
+            // Validacion Nombre
+            if (validarTexto(jtNombre.getText())) {
+                nombre = jtNombre.getText();
+            }else{
+                jlNombreInvalido.setVisible(true);
+            }
+            // Validacion Apellido
+            if (validarTexto(jtApellido.getText())) {
+                apellido = jtApellido.getText();
+            }else{
+                jlApellido.setVisible(true);
+            }
+            
+            fecha = jcFechaNacimiento.getDate();
+            LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            estado = jcbEstado.isSelected();
+            
+            if (!jlDniInvalido.isVisible() && !jlNombreInvalido.isVisible() && !jlApellidoInvalido.isVisible()) {
+                if (alumnoActual == null) {
+                    alumnoActual = new Alumno(dni,apellido,nombre,fechaNac,estado);
+                    alumData.guardarAlumno(alumnoActual);
+                }else{
+                    alumnoActual.setDni(dni);
+                    alumnoActual.setApellido(apellido);
+                    alumnoActual.setNombre(nombre);
+                    alumnoActual.setFecha(fechaNac);
+                    alumnoActual.setEstado(estado);
+                    alumData.actualizarAlumno(alumnoActual);
+                }
+                limpiarCampos();
+            }
+        }  
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyReleased
+        jlDniInvalido.setVisible(false);
+        jbEliminar.setEnabled(false);
+    }//GEN-LAST:event_jtDniKeyReleased
+
+    private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
+        jlNombreInvalido.setVisible(false);
+        jbEliminar.setEnabled(false);
+    }//GEN-LAST:event_jtNombreKeyReleased
+
+    private void jtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyReleased
+        jlApellidoInvalido.setVisible(false);
+        jbEliminar.setEnabled(false);
+    }//GEN-LAST:event_jtApellidoKeyReleased
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        int dni = Integer.parseInt(jtDni.getText());
+        Alumno alumno = alumData.buscarAlumnoPorDni(dni);
+        alumData.eliminarAlumno(alumno.getIdAlumno());
+        limpiarCampos();
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jcFechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcFechaNacimientoPropertyChange
+        jbEliminar.setEnabled(false);
+    }//GEN-LAST:event_jcFechaNacimientoPropertyChange
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+    
+    private boolean validarEntero(String nro){
+        Pattern patron=Pattern.compile("^[0-9]+$");
+        Matcher m=patron.matcher(nro);
+        return m.matches();
+    }
+    
+    private boolean validarTexto(String string){
+        Pattern patron = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚ]+$");
+        Matcher m=patron.matcher(string);
+        return m.matches();
+    }
+
+    public void limpiarCampos(){
+        jtDni.setText("");
+        jtNombre.setText("");
+        jtApellido.setText("");
+        jcbEstado.setSelected(true);
+        jcFechaNacimiento.cleanup();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbEliminar;
+    private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbSalir;
+    private com.toedter.calendar.JDateChooser jcFechaNacimiento;
+    private javax.swing.JCheckBox jcbEstado;
+    private javax.swing.JLabel jlApellido;
+    private javax.swing.JLabel jlApellidoInvalido;
+    private javax.swing.JLabel jlDni;
+    private javax.swing.JLabel jlDniInvalido;
+    private javax.swing.JLabel jlFechaNacimiento;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombreInvalido;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JTextField jtDni;
+    private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
 }

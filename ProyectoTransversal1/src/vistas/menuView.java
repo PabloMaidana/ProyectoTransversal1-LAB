@@ -37,7 +37,7 @@ public class menuView extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmiFMateria = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jmiManejoNotas = new javax.swing.JMenuItem();
+        jmiManejoInscripciones = new javax.swing.JMenuItem();
         jmiManipulacionNotas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmiAlumPorMateria = new javax.swing.JMenuItem();
@@ -82,10 +82,20 @@ public class menuView extends javax.swing.JFrame {
 
         jMenu3.setText("Administracion");
 
-        jmiManejoNotas.setText("Manejo de Inscripciones");
-        jMenu3.add(jmiManejoNotas);
+        jmiManejoInscripciones.setText("Manejo de Inscripciones");
+        jmiManejoInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManejoInscripcionesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiManejoInscripciones);
 
         jmiManipulacionNotas.setText("Manipulacion de notas");
+        jmiManipulacionNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManipulacionNotasActionPerformed(evt);
+            }
+        });
         jMenu3.add(jmiManipulacionNotas);
 
         jMenuBar1.add(jMenu3);
@@ -93,6 +103,11 @@ public class menuView extends javax.swing.JFrame {
         jMenu4.setText("Consultas");
 
         jmiAlumPorMateria.setText("Alumnos por Materia");
+        jmiAlumPorMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAlumPorMateriaActionPerformed(evt);
+            }
+        });
         jMenu4.add(jmiAlumPorMateria);
 
         jMenuBar1.add(jMenu4);
@@ -132,6 +147,30 @@ public class menuView extends javax.swing.JFrame {
         escritorio.add(fMat);
     }//GEN-LAST:event_jmiFMateriaActionPerformed
 
+    private void jmiManejoInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManejoInscripcionesActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioInscripcion fInsc = new FormularioInscripcion();
+        fInsc.setVisible(true);
+        escritorio.add(fInsc);
+    }//GEN-LAST:event_jmiManejoInscripcionesActionPerformed
+
+    private void jmiManipulacionNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManipulacionNotasActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioNotas fNotas = new FormularioNotas();
+        fNotas.setVisible(true);
+        escritorio.add(fNotas);
+    }//GEN-LAST:event_jmiManipulacionNotasActionPerformed
+
+    private void jmiAlumPorMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlumPorMateriaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        AlumnosPorMateria fAlumMat = new AlumnosPorMateria();
+        fAlumMat.setVisible(true);
+        escritorio.add(fAlumMat);
+    }//GEN-LAST:event_jmiAlumPorMateriaActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -178,7 +217,7 @@ public class menuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiAlumPorMateria;
     private javax.swing.JMenuItem jmiFAlumno;
     private javax.swing.JMenuItem jmiFMateria;
-    private javax.swing.JMenuItem jmiManejoNotas;
+    private javax.swing.JMenuItem jmiManejoInscripciones;
     private javax.swing.JMenuItem jmiManipulacionNotas;
     private javax.swing.JMenu jmiSalir;
     // End of variables declaration//GEN-END:variables
