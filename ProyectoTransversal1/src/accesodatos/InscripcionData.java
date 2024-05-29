@@ -118,8 +118,8 @@ public class InscripcionData {
         List<Materia> materias = new ArrayList<>();
         
         String sql = "SELECT materia.* FROM `materia` JOIN inscripcion "
-                + "ON materia.idMateria = inscripcion.idMateria "
-                + "WHERE inscripcion.idAlumno = ?";
+                + " ON materia.idMateria = inscripcion.idMateria "
+                + " WHERE inscripcion.idAlumno = ?";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -142,8 +142,8 @@ public class InscripcionData {
         List<Materia> materias = new ArrayList<>();
         
         String sql = "SELECT materia.* FROM `materia` JOIN inscripcion "
-                + "ON materia.idMateria = inscripcion.idMateria "
-                + "WHERE inscripcion.idAlumno != ?";
+                + " ON materia.idMateria = inscripcion.idMateria "
+                + " WHERE inscripcion.idAlumno != ?";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
