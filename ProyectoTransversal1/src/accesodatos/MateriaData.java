@@ -5,7 +5,6 @@
 package accesodatos;
 import entidades.Materia;
 import java.sql.*;
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class MateriaData {
     }
     
     public void guardarMateria(Materia materia){
-        String sql = "INSERT INTO materia (nombre, año, estado) VALUES (?,?,?)";
+        String sql = " INSERT INTO materia (nombre, año, estado) VALUES (?,?,?) ";
         
         try{
            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -46,7 +45,7 @@ public class MateriaData {
         Materia materia = null;
         
         try{
-            String sql = "SELECT nombre, año, estado FROM materia WHERE idMateria = ? AND estado = 1";
+            String sql = " SELECT nombre, año, estado FROM materia WHERE idMateria = ? AND estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -69,7 +68,7 @@ public class MateriaData {
     
     public void actualizarMateria(Materia materia){
         try{
-            String sql = "UPDATE materia SET nombre= ?, año= ? WHERE idMateria = ?";
+            String sql = " UPDATE materia SET nombre= ?, año= ? WHERE idMateria = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setString(1,materia.getNombre());
@@ -88,7 +87,7 @@ public class MateriaData {
     
     public void eliminarMateria(int id){
         try{
-            String sql = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
+            String sql = " UPDATE materia SET estado = 0 WHERE idMateria = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setInt(1, id);
@@ -107,7 +106,7 @@ public class MateriaData {
         List<Materia> materias = new ArrayList<>();
         
         try{
-            String sql = "SELECT * FROM materia WHERE estado = 1 ";
+            String sql = " SELECT * FROM materia WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
