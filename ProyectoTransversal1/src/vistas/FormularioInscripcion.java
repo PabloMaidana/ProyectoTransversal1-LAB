@@ -76,7 +76,7 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
     private void removerFilaTabla(){
         int indice = modelo.getRowCount() -1;
         
-        for(int i = indice; i>=0; i++){
+        for(int i = indice; i>=0; i--){
             modelo.removeRow(i);
         }
     }
@@ -127,6 +127,11 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         jLabel2.setText("Seleccione un alumno: ");
 
         jcbAlumno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 51, 51), null, new java.awt.Color(204, 204, 204)));
+        jcbAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbAlumnoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -309,6 +314,11 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
             Inscripcion ins = new Inscripcion(a,m,0);
             insData.guardarInscripcion(ins);
             removerFilaTabla();
+            if(jrbMatInscripta.isSelected()){
+                cargaInscriptas();
+            }else if(jrbMatNo.isSelected()){
+                cargaNoInscriptas();
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }
@@ -323,7 +333,11 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
             insData.eliminarInscripcionMateriaAlumno(a.getIdAlumno(), idMateria);
             
             removerFilaTabla();
-    
+            if(jrbMatInscripta.isSelected()){
+                cargaInscriptas();
+            }else if(jrbMatNo.isSelected()){
+                cargaNoInscriptas();
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Seleccione un fila");
         }
@@ -333,6 +347,12 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jcbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlumnoActionPerformed
+        removerFilaTabla();
+        jrbMatInscripta.setSelected(false);
+        jrbMatNo.setSelected(false);
+    }//GEN-LAST:event_jcbAlumnoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

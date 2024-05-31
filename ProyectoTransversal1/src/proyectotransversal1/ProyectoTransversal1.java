@@ -82,7 +82,11 @@ public class ProyectoTransversal1 {
 //          for(Alumno i:alumnosPorMateria){
 //              System.out.println(i.toString());
 //          }
-          controlInscripcion.eliminarInscripcionMateriaAlumno(1, 2);
+//          controlInscripcion.eliminarInscripcionMateriaAlumno(1, 2);
+        List<Materia> materias = controlInscripcion.obtenerMateriasNoCursadas(2);
+        for(Materia m:materias){
+            System.out.println(m.toString());
+        }
     }
        
 }
